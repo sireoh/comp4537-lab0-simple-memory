@@ -1,0 +1,26 @@
+{
+  "name": "comp4537-lab0-simple-memory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && copyfiles -u 1 src/*.html src/css/** src/lang/** dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sireoh/comp4537-lab0-simple-memory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sireoh/comp4537-lab0-simple-memory/issues"
+  },
+  "homepage": "https://github.com/sireoh/comp4537-lab0-simple-memory#readme",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.9.2"
+  }
+}
