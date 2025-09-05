@@ -1,4 +1,4 @@
-import { InitGameManager } from "../init.js";
+import { GlobalGameManager } from "../globals.js";
 
 export class DOMUtils {
   static Button = {
@@ -24,7 +24,7 @@ export class DOMUtils {
       btn.textContent = label;
       btn.style.backgroundColor = colour;
       btn.onclick = () => {
-        InitGameManager.setButton(colour);
+        GlobalGameManager.setButton(colour);
       };
     },
 

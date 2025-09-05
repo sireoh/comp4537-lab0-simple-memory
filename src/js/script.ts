@@ -4,7 +4,7 @@ import { ColouredButton } from "./components/button.js";
 import { BUTTON_COLOURS } from "./constants.js";
 import { GameUtils } from "./helpers/gameutils.js";
 import { Utils } from "./helpers/utils.js";
-import { InitGameManager } from "./init.js";
+import { GlobalGameManager } from "./globals.js";
 
 async function play(n: number) {
   // DEBUG
@@ -23,7 +23,7 @@ async function play(n: number) {
 
     InitGameManager.validOrder.push(chosenColour);
     // DEBUG
-    console.log(`Valid order updated: ${InitGameManager.validOrder}`);
+    console.log(`Valid order updated: ${GlobalGameManager.validOrder}`);
   }
 
   GameUtils.organizeButtons(buttons);
