@@ -14,14 +14,14 @@ async function play(n: number) {
   const colours: string[] = GameUtils.randomizeColourArray(BUTTON_COLOURS);
 
   // Set the max button amount for the game manager
-  InitGameManager.btnAmount = n;
+  GlobalGameManager.btnAmount = n;
 
   // Create n buttons
   for (let i = 0; i < n; i++) {
     let chosenColour = GameUtils.drawRandomColour(colours);
     buttons[i] = new ColouredButton(i + 1 + "", chosenColour);
 
-    InitGameManager.validOrder.push(chosenColour);
+    GlobalGameManager.validOrder.push(chosenColour);
     // DEBUG
     console.log(`Valid order updated: ${GlobalGameManager.validOrder}`);
   }
