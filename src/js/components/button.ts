@@ -47,4 +47,12 @@ export class ColouredButton extends ButtonBase {
     this.positionY = newY;
     DOMUtils.Button.setLocation(this.btn, newX, newY);
   }
+
+  // Function to convert em to pixels
+  static emToPixels(em: string): number {
+    return (
+      parseFloat(em) *
+      parseFloat(getComputedStyle(document.documentElement).fontSize)
+    );
+  }
 }
