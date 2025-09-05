@@ -1,3 +1,5 @@
+import { InitGameManager } from "../init.js";
+
 export class DOMUtils {
   static Button = {
     createButton(
@@ -21,6 +23,9 @@ export class DOMUtils {
     updateDetails(btn: HTMLButtonElement, label: string, colour: string): void {
       btn.textContent = label;
       btn.style.backgroundColor = colour;
+      btn.onclick = () => {
+        InitGameManager.setButton(colour);
+      };
     },
 
     setLocation(btn: HTMLButtonElement, newX: number, newY: number): void {

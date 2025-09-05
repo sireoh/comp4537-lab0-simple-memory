@@ -8,10 +8,6 @@ import {
 import { Utils } from "./utils.js";
 
 export class GameUtils {
-  static generateButtons(count: number) {
-    console.log(`Generating ${count} buttons.`);
-    // TODO: clone the array of colors and then push / pop to select the colors.
-  }
   static async scrambleButtons(buttons: ColouredButton[]) {
     const timesToScramble = Math.floor(Math.random() * 2) + 2;
 
