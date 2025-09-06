@@ -3,7 +3,7 @@
   "compilerOptions": {
     // File Layout
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./dist/COMP4537/labs/0/",
 
     // Environment Settings
     "module": "es6",

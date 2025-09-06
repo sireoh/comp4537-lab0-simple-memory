@@ -3,6 +3,9 @@
 import { Constants } from "../constants.js";
 import { DOMUtils } from "../helpers/domutils.js";
 
+/**
+ * Button base that all buttons inherit
+ */
 class ButtonBase {
   btn: HTMLButtonElement;
   height: string;
@@ -22,6 +25,10 @@ class ButtonBase {
   }
 }
 
+/**
+ * Coloured button has all the button base elements,
+ * while also has label and colour
+ */
 export class ColouredButton extends ButtonBase {
   label: string;
   colour: string;

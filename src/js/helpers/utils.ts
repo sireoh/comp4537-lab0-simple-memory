@@ -1,3 +1,6 @@
+/**
+ * Util class contains useful utilities that work general purpose.
+ */
 export class Utils {
   static getBrowserSize() {
     let getBrowserSize = {
@@ -8,6 +11,10 @@ export class Utils {
   }
 }
 
+/**
+ * Util Manager helps construct the Global Util Manager which stores all
+ * the useful utility functions and state such as time.
+ */
 export class UtilManager {
   timeouts: number[];
 
@@ -15,6 +22,9 @@ export class UtilManager {
     this.timeouts = [];
   }
 
+  /**
+   * Clears all the timeouts
+   */
   clearAllTimeouts(): void {
     this.timeouts.forEach((id) => clearTimeout(id));
     this.timeouts = [];

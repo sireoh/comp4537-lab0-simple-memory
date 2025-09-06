@@ -3,33 +3,29 @@
 import { ColouredButton } from "./components/button.js";
 import { GameUtils } from "./helpers/gameutils.js";
 import { Globals } from "./globals.js";
+import { Constants } from "./constants.js";
 
+/**
+ * Play function starts the main game loop
+ * @param n as the numbers of buttons to generate
+ */
 async function play(n: number) {
-  // Reset previous timers
-  Globals.UtilManager.clearAllTimeouts();
-
   // Reset the game
   Globals.reset();
 
   // Set the max button amount for the game manager
-  Globals.GameManager.btnAmount = n;
+  Globals.GameManager.setBtnAmount(n);
 
   // Create n buttons
-  for (let i = 0; i < n; i++) {
-    let chosenColour = GameUtils.getRandomColour();
-    Globals.PlayManager.buttons[i] = new ColouredButton(
-      i + 1 + "",
-      chosenColour
-    );
+  createNButtons(n);
 
-    Globals.GameManager.validOrder.push(Globals.PlayManager.buttons[i]!);
-  }
-
+  // Organizes buttons based on the browser width.
   GameUtils.organizeButtons(Globals.PlayManager.buttons);
 
   // Schedule scramble after n seconds
   Globals.UtilManager.timeouts.push(
     setTimeout(() => {
+      // Scrambles the buttons, this function has a timer inside, so it'll block until finished.
       GameUtils.scrambleButtons(Globals.PlayManager.buttons, n);
 
       // Schedule hiding labels 2s later
@@ -39,10 +35,27 @@ async function play(n: number) {
           Globals.PlayManager.buttons.forEach(
             (button) => (button.btn.disabled = false)
           );
-        }, 2000)
+        }, Constants.TWO_SECONDS)
       );
-    }, n * 1000)
+      // Scramble buttons - outer loop: Waits n * 1s in the organized state.
+    }, n * Constants.SECOND)
   );
+}
+
+/**
+ * Creates buttons to the DOM, depending of the number n.
+ * @param n number of buttons to create
+ */
+function createNButtons(n: number) {
+  for (let i = 0; i < n; i++) {
+    let chosenColour = GameUtils.getRandomColour();
+    Globals.PlayManager.buttons[i] = new ColouredButton(
+      i + 1 + "",
+      chosenColour
+    );
+
+    Globals.GameManager.validOrder.push(Globals.PlayManager.buttons[i]!);
+  }
 }
 
 // Get "n" from the form
