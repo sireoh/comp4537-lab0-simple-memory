@@ -8,9 +8,10 @@ import {
 import { Utils } from "./utils.js";
 
 export class GameUtils {
-  static async scrambleButtons(buttons: ColouredButton[]) {
-    const timesToScramble = Math.floor(Math.random() * 2) + 2;
-
+  static async scrambleButtons(
+    buttons: ColouredButton[],
+    timesToScramble: number
+  ) {
     for (let i = 0; i < timesToScramble; i++) {
       // Scramble each button
       buttons.forEach((button) => {

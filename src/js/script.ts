@@ -21,9 +21,7 @@ async function play(n: number) {
     let chosenColour = GameUtils.drawRandomColour(colours);
     buttons[i] = new ColouredButton(i + 1 + "", chosenColour);
 
-    GlobalGameManager.validOrder.push(chosenColour);
-    // DEBUG
-    console.log(`Valid order updated: ${GlobalGameManager.validOrder}`);
+    GlobalGameManager.validOrder.push(buttons[i]!);
   }
 
   GameUtils.organizeButtons(buttons);
@@ -31,7 +29,7 @@ async function play(n: number) {
   // Sleep
   await Utils.sleep(n * 1000);
 
-  GameUtils.scrambleButtons(buttons);
+  GameUtils.scrambleButtons(buttons, n);
 
   // Sleep
   await Utils.sleep(2000);
