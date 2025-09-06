@@ -25,19 +25,7 @@ async function play(n: number) {
   // Schedule scramble after n seconds
   Globals.UtilManager.timeouts.push(
     setTimeout(() => {
-      // Scrambles the buttons, this function has a timer inside, so it'll block until finished.
       GameUtils.scrambleButtons(Globals.PlayManager.buttons, n);
-
-      // Schedule hiding labels 2s later
-      Globals.UtilManager.timeouts.push(
-        setTimeout(() => {
-          GameUtils.hideButtonLabels(Globals.PlayManager.buttons);
-          Globals.PlayManager.buttons.forEach(
-            (button) => (button.btn.disabled = false)
-          );
-        }, Constants.TWO_SECONDS)
-      );
-      // Scramble buttons - outer loop: Waits n * 1s in the organized state.
     }, n * Constants.SECOND)
   );
 }

@@ -61,8 +61,12 @@ export class GameManager {
       // End the game if everything is correct
       if (this.currentIndex == this.btnAmount - Constants.OFFSET) {
         alert(User.WIN_MESSAGE);
+        this.endGame();
       }
     } else {
+      alert(User.LOSE_MESSAGE);
+      this.revealAllButtons();
+
       this.endGame();
     }
   }
@@ -104,9 +108,6 @@ export class GameManager {
    * the losing message.
    */
   endGame() {
-    alert(User.LOSE_MESSAGE);
-    this.revealAllButtons();
-
     // cancel any previous pending resets
     Globals.UtilManager.clearAllTimeouts();
 

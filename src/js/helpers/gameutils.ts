@@ -14,13 +14,20 @@ export class GameUtils {
     timesToScramble: number
   ) {
     for (let i = 0; i < timesToScramble; i++) {
-      const timeoutId = setTimeout(() => {
+      const scrambleTimer = setTimeout(() => {
         buttons.forEach((button) => {
           GameUtils.scrambleButtonsHelper(button);
+
+          // Hide the labels on the last scramble
+          if (i == timesToScramble - 1) {
+            const hideTimer = setTimeout(() => {
+              GameUtils.hideButtonLabels(buttons);
+            }, Constants.TWO_SECONDS);
+            Globals.UtilManager.timeouts.push(hideTimer);
+          }
         });
-        console.log(`[${i + 1}] Scrambled buttons`);
       }, i * Constants.TWO_SECONDS); // every 2 seconds
-      Globals.UtilManager.timeouts.push(timeoutId);
+      Globals.UtilManager.timeouts.push(scrambleTimer);
     }
   }
 
@@ -96,6 +103,7 @@ export class GameUtils {
   static hideButtonLabels(buttons: ColouredButton[]) {
     buttons.forEach((button) => {
       button.btn.textContent = "";
+      button.btn.disabled = false;
     });
   }
 
