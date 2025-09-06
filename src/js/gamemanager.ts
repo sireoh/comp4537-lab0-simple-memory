@@ -1,7 +1,6 @@
 import { User } from "../lang/messages/en/user.js";
 import type { ColouredButton } from "./components/button.js";
 import { Globals } from "./globals.js";
-import { Utils } from "./helpers/utils.js";
 
 export class GameManager {
   btnAmount: number;
