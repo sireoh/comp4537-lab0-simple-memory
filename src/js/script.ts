@@ -6,9 +6,6 @@ import { Utils } from "./helpers/utils.js";
 import { Globals } from "./globals.js";
 
 async function play(n: number) {
-  // DEBUG
-  console.log("Game started.");
-
   // Reset the game
   Globals.reset();
 

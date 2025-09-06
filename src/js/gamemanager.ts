@@ -1,3 +1,4 @@
+import { User } from "../lang/messages/en/user.js";
 import type { ColouredButton } from "./components/button.js";
 import { Globals } from "./globals.js";
 import { Utils } from "./helpers/utils.js";
@@ -37,7 +38,7 @@ export class GameManager {
 
       // End the game if everything is correct
       if (this.currentIndex == this.btnAmount - 1) {
-        alert("Excellent memory!");
+        alert(User.WIN_MESSAGE);
       }
     } else {
       this.endGame();
@@ -68,7 +69,7 @@ export class GameManager {
   }
 
   async endGame() {
-    alert("Wrong order!");
+    alert(User.LOSE_MESSAGE);
     this.revealAllButtons();
 
     await Utils.sleep(2000);
