@@ -7,9 +7,11 @@
 
     // Environment Settings
     "module": "es6",
-    "target": "es6",
+    "target": "es2017",        // ensures async/await is emitted directly
     "types": [],
     "lib": ["esnext", "dom"],     // DOM types since this is browser-based
+
+    "esModuleInterop": true,
 
     // Other Outputs
     // "sourceMap": true,
