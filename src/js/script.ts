@@ -1,7 +1,7 @@
 // src/js/script.ts
 
 import { ColouredButton } from "./components/button.js";
-import { BUTTON_COLOURS } from "./constants.js";
+import { Constants } from "./constants.js";
 import { GameUtils } from "./helpers/gameutils.js";
 import { Utils } from "./helpers/utils.js";
 import { GlobalGameManager } from "./globals.js";
@@ -11,7 +11,9 @@ async function play(n: number) {
   console.log("Game started.");
 
   const buttons: ColouredButton[] = [];
-  const colours: string[] = GameUtils.randomizeColourArray(BUTTON_COLOURS);
+  const colours: string[] = GameUtils.randomizeColourArray(
+    Constants.BUTTON_COLOURS
+  );
 
   // Set the max button amount for the game manager
   GlobalGameManager.btnAmount = n;

@@ -1,10 +1,5 @@
 import { ColouredButton } from "../components/button.js";
-import {
-  BUTTON_HEIGHT,
-  BUTTON_WIDTH,
-  HORIZONTAL_START,
-  VERTICAL_START,
-} from "../constants.js";
+import { Constants } from "../constants.js";
 import { Utils } from "./utils.js";
 
 export class GameUtils {
@@ -37,19 +32,19 @@ export class GameUtils {
   static organizeButtonsHelper(buttons: ColouredButton[], index: number) {
     // Get important dimensions to be used for calculations
     const browserWidth = Utils.getBrowserSize().width;
-    const buttonWidth = ColouredButton.emToPixels(BUTTON_WIDTH);
-    const buttonHeight = ColouredButton.emToPixels(BUTTON_HEIGHT);
+    const buttonWidth = ColouredButton.emToPixels(Constants.BUTTON_WIDTH);
+    const buttonHeight = ColouredButton.emToPixels(Constants.BUTTON_HEIGHT);
 
     // Determines the amound ot rows based on the browser width
     const buttonsPerRow = Math.floor(
-      (browserWidth - HORIZONTAL_START) / buttonWidth
+      (browserWidth - Constants.HORIZONTAL_START) / buttonWidth
     );
 
     let row = Math.floor(index / buttonsPerRow);
     let col = index % buttonsPerRow;
 
-    let x = HORIZONTAL_START + col * buttonWidth;
-    let y = VERTICAL_START + row * buttonHeight;
+    let x = Constants.HORIZONTAL_START + col * buttonWidth;
+    let y = Constants.VERTICAL_START + row * buttonHeight;
 
     buttons[index]!.setLocation(x, y);
   }
@@ -60,8 +55,8 @@ export class GameUtils {
       Utils.getBrowserSize();
 
     // Button dimensions (converted from em to px)
-    const buttonWidth = ColouredButton.emToPixels(BUTTON_WIDTH);
-    const buttonHeight = ColouredButton.emToPixels(BUTTON_HEIGHT);
+    const buttonWidth = ColouredButton.emToPixels(Constants.BUTTON_WIDTH);
+    const buttonHeight = ColouredButton.emToPixels(Constants.BUTTON_HEIGHT);
 
     // Random positions, ensuring the button stays inside the screen
     const x = Math.floor(Math.random() * (browserWidth - buttonWidth));

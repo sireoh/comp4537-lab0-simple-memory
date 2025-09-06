@@ -1,6 +1,6 @@
 // .ts/components/button.ts
 
-import { BUTTON_HEIGHT, BUTTON_WIDTH } from "../constants.js";
+import { Constants } from "../constants.js";
 import { DOMUtils } from "../helpers/domutils.js";
 
 class ButtonBase {
@@ -12,8 +12,8 @@ class ButtonBase {
 
   constructor() {
     this.btn = document.createElement("button");
-    this.height = BUTTON_HEIGHT;
-    this.width = BUTTON_WIDTH;
+    this.height = Constants.BUTTON_HEIGHT;
+    this.width = Constants.BUTTON_WIDTH;
     this.positionX = 0;
     this.positionY = 0;
 
