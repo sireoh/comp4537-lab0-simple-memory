@@ -18,13 +18,7 @@ class ButtonBase {
     this.positionY = 0;
 
     // Apply styles and add to DOM
-    DOMUtils.Button.createButton(
-      this.btn,
-      this.width,
-      this.height,
-      this.positionX,
-      this.positionY
-    );
+    DOMUtils.Button.createButton(this.btn, this.positionX, this.positionY);
   }
 }
 

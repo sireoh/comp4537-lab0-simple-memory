@@ -1,53 +1,52 @@
 // src/js/script.ts
 
 import { ColouredButton } from "./components/button.js";
-import { Constants } from "./constants.js";
 import { GameUtils } from "./helpers/gameutils.js";
 import { Utils } from "./helpers/utils.js";
-import { GlobalGameManager } from "./globals.js";
+import { Globals } from "./globals.js";
 
 async function play(n: number) {
   // DEBUG
   console.log("Game started.");
 
-  const buttons: ColouredButton[] = [];
-  const colours: string[] = GameUtils.randomizeColourArray(
-    Constants.BUTTON_COLOURS
-  );
+  // Reset the game
+  Globals.reset();
 
   // Set the max button amount for the game manager
-  GlobalGameManager.btnAmount = n;
+  Globals.GameManager.btnAmount = n;
 
   // Create n buttons
   for (let i = 0; i < n; i++) {
-    let chosenColour = GameUtils.drawRandomColour(colours);
-    buttons[i] = new ColouredButton(i + 1 + "", chosenColour);
+    let chosenColour = GameUtils.getRandomColour();
+    Globals.PlayManager.buttons[i] = new ColouredButton(
+      i + 1 + "",
+      chosenColour
+    );
 
-    GlobalGameManager.validOrder.push(buttons[i]!);
+    Globals.GameManager.validOrder.push(Globals.PlayManager.buttons[i]!);
   }
 
-  GameUtils.organizeButtons(buttons);
+  GameUtils.organizeButtons(Globals.PlayManager.buttons);
 
   // Sleep
   await Utils.sleep(n * 1000);
 
-  GameUtils.scrambleButtons(buttons, n);
+  GameUtils.scrambleButtons(Globals.PlayManager.buttons, n);
 
   // Sleep
   await Utils.sleep(2000);
 
   // Hide button labels
-  GameUtils.hideButtonLabels(buttons);
+  GameUtils.hideButtonLabels(Globals.PlayManager.buttons);
 }
 
 // Get "n" from the form
 const form = document.getElementById("mainForm") as HTMLFormElement;
-const n: number = form["buttonCount"].value;
-
 // Create event listener for the form submission
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const n: number = form["buttonCount"].value;
   // Start a new game
   play(n);
 });

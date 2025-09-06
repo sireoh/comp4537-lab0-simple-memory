@@ -1,20 +1,17 @@
-import { GlobalGameManager } from "../globals.js";
+import { Globals } from "../globals.js";
 
 export class DOMUtils {
   static Button = {
     createButton(
       btn: HTMLButtonElement,
-      width: number | string,
-      height: number | string,
       positionX: number,
       positionY: number
     ): void {
-      btn.style.position = "absolute";
-      btn.style.width = typeof width === "number" ? `${width}px` : width;
-      btn.style.height = typeof height === "number" ? `${height}px` : height;
-
       // Place at initial location
       DOMUtils.Button.setLocation(btn, positionX, positionY);
+
+      // Attack .buttonBase class to each button
+      btn.className = "buttonBase";
 
       // Add to page
       document.body.appendChild(btn);
@@ -24,7 +21,7 @@ export class DOMUtils {
       btn.textContent = label;
       btn.style.backgroundColor = colour;
       btn.onclick = () => {
-        GlobalGameManager.setButton(colour);
+        Globals.GameManager.setButton(colour);
       };
     },
 

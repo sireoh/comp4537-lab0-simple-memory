@@ -71,16 +71,10 @@ export class GameUtils {
     });
   }
 
-  static drawRandomColour(colours: string[]): string {
-    return colours.shift()!;
-  }
-
-  static randomizeColourArray(colours: string[]): string[] {
-    const arr: string[] = [...colours];
-    for (let i = colours.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [colours[i], colours[j]] = [colours[j] as string, colours[i] as string];
-    }
-    return colours;
+  static getRandomColour(): string {
+    let r = Math.floor(Math.random() * Constants.RGB_COLOURS_AMT);
+    let g = Math.floor(Math.random() * Constants.RGB_COLOURS_AMT);
+    let b = Math.floor(Math.random() * Constants.RGB_COLOURS_AMT);
+    return `rgb(${r}, ${g}, ${b})`;
   }
 }
