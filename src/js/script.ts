@@ -38,6 +38,11 @@ async function play(n: number) {
 
   // Hide button labels
   GameUtils.hideButtonLabels(Globals.PlayManager.buttons);
+
+  // Make buttons clickable again
+  Globals.PlayManager.buttons.forEach((button) => {
+    button.btn.disabled = false;
+  });
 }
 
 // Get "n" from the form

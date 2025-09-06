@@ -13,6 +13,9 @@ export class DOMUtils {
       // Attack .buttonBase class to each button
       btn.className = "buttonBase";
 
+      // Disables the button to be clickable on creation
+      btn.disabled = true;
+
       // Add to page
       document.body.appendChild(btn);
     },

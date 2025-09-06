@@ -1,5 +1,6 @@
 import type { ColouredButton } from "./components/button.js";
 import { Globals } from "./globals.js";
+import { Utils } from "./helpers/utils.js";
 
 export class GameManager {
   btnAmount: number;
@@ -60,9 +61,18 @@ export class GameManager {
     });
   }
 
-  endGame() {
+  revealAllButtons() {
+    this.validOrder.forEach((item, index) => {
+      item.btn.textContent = index + 1 + "";
+    });
+  }
+
+  async endGame() {
+    alert("Wrong order!");
+    this.revealAllButtons();
+
+    await Utils.sleep(2000);
     this.reset();
     Globals.PlayManager.reset();
-    alert("Game over!");
   }
 }
