@@ -1,5 +1,6 @@
 import { ColouredButton } from "../components/button.js";
 import { Constants } from "../constants.js";
+import { Globals } from "../globals.js";
 import { Utils } from "./utils.js";
 
 export class GameUtils {
@@ -8,14 +9,13 @@ export class GameUtils {
     timesToScramble: number
   ) {
     for (let i = 0; i < timesToScramble; i++) {
-      // Scramble each button
-      buttons.forEach((button) => {
-        GameUtils.scrambleButtonsHelper(button);
-      });
-
-      // Sleep
-      console.log(`[${i + 1}] Sleeping for 2 seconds...`);
-      await Utils.sleep(2000);
+      const timeoutId = setTimeout(() => {
+        buttons.forEach((button) => {
+          GameUtils.scrambleButtonsHelper(button);
+        });
+        console.log(`[${i + 1}] Scrambled buttons`);
+      }, i * 2000); // every 2 seconds
+      Globals.UtilManager.timeouts.push(timeoutId);
     }
   }
   static organizeButtons(buttons: ColouredButton[]) {

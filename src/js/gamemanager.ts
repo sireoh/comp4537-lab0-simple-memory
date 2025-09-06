@@ -72,8 +72,15 @@ export class GameManager {
     alert(User.LOSE_MESSAGE);
     this.revealAllButtons();
 
-    await Utils.sleep(2000);
-    this.reset();
-    Globals.PlayManager.reset();
+    // cancel any previous pending resets
+    Globals.UtilManager.clearAllTimeouts();
+
+    // schedule reset after 2s
+    const timeoutId = setTimeout(() => {
+      this.reset();
+      Globals.PlayManager.reset();
+    }, 2000);
+
+    Globals.UtilManager.timeouts.push(timeoutId);
   }
 }

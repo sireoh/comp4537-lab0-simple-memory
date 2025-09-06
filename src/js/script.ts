@@ -2,10 +2,12 @@
 
 import { ColouredButton } from "./components/button.js";
 import { GameUtils } from "./helpers/gameutils.js";
-import { Utils } from "./helpers/utils.js";
 import { Globals } from "./globals.js";
 
 async function play(n: number) {
+  // Reset previous timers
+  Globals.UtilManager.clearAllTimeouts();
+
   // Reset the game
   Globals.reset();
 
@@ -25,21 +27,22 @@ async function play(n: number) {
 
   GameUtils.organizeButtons(Globals.PlayManager.buttons);
 
-  // Sleep
-  await Utils.sleep(n * 1000);
+  // Schedule scramble after n seconds
+  Globals.UtilManager.timeouts.push(
+    setTimeout(() => {
+      GameUtils.scrambleButtons(Globals.PlayManager.buttons, n);
 
-  GameUtils.scrambleButtons(Globals.PlayManager.buttons, n);
-
-  // Sleep
-  await Utils.sleep(2000);
-
-  // Hide button labels
-  GameUtils.hideButtonLabels(Globals.PlayManager.buttons);
-
-  // Make buttons clickable again
-  Globals.PlayManager.buttons.forEach((button) => {
-    button.btn.disabled = false;
-  });
+      // Schedule hiding labels 2s later
+      Globals.UtilManager.timeouts.push(
+        setTimeout(() => {
+          GameUtils.hideButtonLabels(Globals.PlayManager.buttons);
+          Globals.PlayManager.buttons.forEach(
+            (button) => (button.btn.disabled = false)
+          );
+        }, 2000)
+      );
+    }, n * 1000)
+  );
 }
 
 // Get "n" from the form

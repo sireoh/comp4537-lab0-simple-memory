@@ -6,10 +6,17 @@ export class Utils {
     };
     return getBrowserSize;
   }
-  static storeMessage(message: string) {
-    console.log(`Storing message: ${message}`);
+}
+
+export class UtilManager {
+  timeouts: number[];
+
+  constructor() {
+    this.timeouts = [];
   }
-  static sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+
+  clearAllTimeouts(): void {
+    this.timeouts.forEach((id) => clearTimeout(id));
+    this.timeouts = [];
   }
 }
