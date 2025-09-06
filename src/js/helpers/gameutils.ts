@@ -75,20 +75,6 @@ export class GameUtils {
       button.btn.textContent = "";
     });
   }
-  static showButtonLabel(index: number) {
-    console.log(`Showing label for button at index ${index}.`);
-  }
-  static checkButtonOrder(
-    selectedButtonLabel: string,
-    selectedButtonIndex: number
-  ) {
-    console.log(
-      `Checking button order for label ${selectedButtonLabel} at index ${selectedButtonIndex}.`
-    );
-  }
-  static resetGame() {
-    console.log("Resetting game.");
-  }
 
   static drawRandomColour(colours: string[]): string {
     return colours.shift()!;
